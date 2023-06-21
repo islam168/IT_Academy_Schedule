@@ -4,11 +4,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = getenv('DJANGO_SECRET_KEY')
+SECRET_KEY = 'yxd9=c)t!x4oy+x410bjbu#72i@xkl9yz(w*l(dp(lr6-4q#r@'
 
-DEBUG = literal_eval(getenv('DJANGO_DEBUG'))
+DEBUG = True
 
-ALLOWED_HOSTS = getenv('DJANGO_ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
@@ -68,12 +68,8 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': getenv('DB_ENGINE'),
-        'NAME': getenv('DB_NAME'),
-        'USER': getenv('DB_USER'),
-        'PASSWORD': getenv('DB_PASSWORD'),
-        'HOST': getenv('DB_HOST'),
-        'PORT': getenv('DB_PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -96,7 +92,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-TOKEN_EXPIRED_AFTER_SECONDS = int(getenv('TOKEN_EXPIRED_AFTER_SECONDS', 1000))
+TOKEN_EXPIRED_AFTER_SECONDS = 1000
 
 LANGUAGE_CODE = 'en-us'
 
