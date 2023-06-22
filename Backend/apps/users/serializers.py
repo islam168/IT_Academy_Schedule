@@ -28,6 +28,6 @@ class UserCreateSerializer(serializers.ModelSerializer):
         return user
 
 
-class UserLoginSerializer(serializers.Serializer):
+class UserLoginSerializer(serializers.Serializer):#111
     email = EmailField()
     password = CharField(max_length=128, min_length=8)
