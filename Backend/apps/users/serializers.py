@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from rest_framework.fields import EmailField, CharField
 from apps.users.models import User, Group, Role
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -19,7 +19,6 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
         if group_data:
             user.group_id = group_data
-            # print('Данные отправлены')
 
         for role_item in role_data:
             user.role.add(role_item)
@@ -28,6 +27,50 @@ class UserCreateSerializer(serializers.ModelSerializer):
         return user
 
 
-class UserLoginSerializer(serializers.Serializer):
-    email = EmailField()
-    password = CharField(max_length=128, min_length=8)
+class RoleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Role
+        fields = ['id', 'name']
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'name']
+
+
+class GroupSerializer(serializers.ModelSerializer):
+    mentor = serializers.SerializerMethodField()
+    reviewer = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Group
+        fields = ['id', 'name', 'mentor', 'reviewer']
+
+    def get_mentor(self, obj):
+        users = obj.users.all()  # Получить всех пользователей связанных с группой
+        for user in users:
+            if 'Ментор' in user.role.values_list('name', flat=True) and user.group == obj:
+                return UserSerializer(user).data
+        return None
+
+    def get_reviewer(self, obj):
+        users = obj.users.all()  # Получить всех пользователей связанных с группой
+        for user in users:
+            if 'Ревьювер' in user.role.values_list('name', flat=True) and user.group == obj:
+                return UserSerializer(user).data
+        return None
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['name'] = user.name
+        token['email'] = user.email
+        # ...
+
+        return token
+
+
