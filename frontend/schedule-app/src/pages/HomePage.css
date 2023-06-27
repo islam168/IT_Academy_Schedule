@@ -1,0 +1,11 @@
+.home-page {
+  text-align: center;
+   margin-top: 20px;
+}
+
+.home-page-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: "Arial", sans-serif;
+}

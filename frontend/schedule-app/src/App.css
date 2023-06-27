@@ -1,38 +1,83 @@
-.App {
-  text-align: center;
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');*/
+
+/** {*/
+/*    font-family: "Poppins", cursive;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+body {
+    background-color: white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.register {
+    max-width: 1000px;
+    justify-content: center;
+    display: flex;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+    background-color: rgba(243, 240, 240, 0.973);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.register span {
+    color: #e8eaec;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#form {
+    max-width: 320px;
+    margin: 0 auto;
+    margin: 2em auto;
 }
 
-.App-link {
-  color: #61dafb;
+#form > input,
+.btn,
+select {
+    border: 1px solid #e9ecef;
+    padding: .9em 1em;
+    background-color: rgba(243, 240, 240, 0.973);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#form > input:focus,
+.btn:focus,
+select:focus {
+    outline: none;
+}
+
+.btn {
+    background-color: #003049;
+    color: #e9ecef;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.flex {
+    display: flex;
+    gap: 1em;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.register .col-1 {
+    margin: auto;
+    padding: 3em 0;
+}
+
+.register .col-2 img {
+    width: 480px;
+    height: 100%;
+    object-fit: cover;
+    align-self: flex-end;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: none;
+}
+
+@media screen and (min-width: 860px) {
+    .register .col-2 img {
+        display: initial;
+    }
 }

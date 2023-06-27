@@ -1,0 +1,13 @@
+.navbar-brand,
+.navbar-text {
+  padding: 0.5em 1em; /* Примерные значения отступов */
+}
+
+.logout-button {
+  padding: 0.5em 1em;
+  border: none; /* Убирает рамку */
+  background-color: transparent; /* Убирает белый фон */
+  color: white; /* Устанавливает цвет текста */
+  cursor: pointer; /* Показывает, что элемент является интерактивным */
+  text-decoration: none; /* Убирает подчеркивание ссылки */
+}

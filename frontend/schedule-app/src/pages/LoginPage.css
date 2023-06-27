@@ -1,0 +1,43 @@
+.container {
+  margin-top: 50px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.btn {
+  margin-right: 10px;
+}
+
+.text-danger {
+  margin-top: 10px;
+}
+
+.text {
+margin-top: 50px;
+font-family: "Arial", sans-serif;
+text-align: center;
+}
+
+.background {
+  background-image: url('./login.png');
+  background-repeat: no-repeat;
+  background-size: 20%;
+  background-position: center;
+  height: 100%; /* Растянуть на весь экран */
+  width: 100%;
+}
+
+
+.transparent-bg {
+  margin-top: 100px;
+  background-color: rgba(0, 0, 0, 0.55); /* Прозрачный фон на 60% */
+  padding: 45px;
+  border-radius: 20px;
+}
+
+.registration-btn{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
