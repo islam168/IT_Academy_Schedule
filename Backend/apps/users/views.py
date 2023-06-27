@@ -36,6 +36,10 @@ class UserCreateAPIView(CreateAPIView):
     serializer_class = UserCreateSerializer
 
     def post(self, request, *args, **kwargs):
+        email = request.data.get('email')
+        if User.objects.filter(email=email).exists():
+            return Response('пользователь с такой почтой уже существует', status=status.HTTP_400_BAD_REQUEST)
+
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
