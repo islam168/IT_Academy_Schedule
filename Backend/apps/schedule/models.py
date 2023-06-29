@@ -70,8 +70,8 @@ class Schedule(models.Model):
                                  related_name='SET_NULL',
                                  on_delete=models.SET_NULL,
                                  null=True, blank=False)
-    course_start_date = models.DateField(verbose_name='Дата начала курса')
-    course_end_date = models.DateField(verbose_name='Дата окончания курса')
+    start_date = models.DateField(verbose_name='Дата начала курса', null=False, blank=False)
+    end_date = models.DateField(verbose_name='Дата окончания курса', null=False, blank=False)
 
     class Meta:
         verbose_name = 'Расписание'
