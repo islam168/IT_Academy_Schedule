@@ -17,3 +17,8 @@
     $ cd frontend/schedule-app
     $ npm install
     $ npm start
+```
+##Роли
+Ментор
+Ревьювер
+Студент
