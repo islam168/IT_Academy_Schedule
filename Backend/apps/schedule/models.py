@@ -73,6 +73,7 @@ class Schedule(models.Model):
     course_start_date = models.DateField(verbose_name='Дата начала курса', null=False, blank=False)
     course_end_date = models.DateField(verbose_name='Дата окончания курса', null=False, blank=False)
 
+
     class Meta:
         verbose_name = 'Расписание'
         verbose_name_plural = 'Расписания'
