@@ -10,6 +10,8 @@
     $ Запуск виртуальной среды
     $ Установление переменных окружения (envs)
     $ pip install -r requirements.txt
+    $ python manage.py makemigrations users
+    $ python manage.py makemigrations schedule
     $ python manage.py collectstatic
     $ python manage.py migrate
     $ python manage.py runserver
