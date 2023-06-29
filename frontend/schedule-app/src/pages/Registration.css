@@ -15,28 +15,60 @@
 }
 
 .form-check-label {
-font-family: "Arial", sans-serif;
+  font-family: "Arial", sans-serif;
 }
-
-
 
 .background {
   background-image: url('./login.png');
   background-repeat: no-repeat;
   background-size: 52%;
   background-position: center;
-  height: 100%; /* Растянуть на весь экран */
+  height: 100%;
   width: 100%;
 }
 
 .transparent-bg {
   margin-top: 100px;
-  background-color: rgba(0, 0, 0, 0.55); /* Прозрачный фон на 60% */
+  background-color: rgba(0, 0, 0, 0.55);
   padding: 45px;
   border-radius: 20px;
 }
 
-.login-btn{
-  margin-top: 10px;
-  margin-bottom: 10px;
+.title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-wrapper h2 {
+  margin-bottom: 30px;
+}
+
+.login-btn {
+  margin-bottom: 30px;
+  margin-right: -10px;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-input-wrapper {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666666;
+  padding: 0;
 }

@@ -30,7 +30,6 @@ export const AuthProvider = ({children}) => {
         setAuthTokens(data);
         setUser(jwtDecode(data.access));
         navigate('/schedule');
-        console.log(data.access);
         return { data };
       } else {
         return { error: data.detail };

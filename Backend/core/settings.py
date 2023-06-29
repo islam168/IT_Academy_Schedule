@@ -1,3 +1,4 @@
+import os
 from os import getenv
 from ast import literal_eval
 from pathlib import Path
@@ -13,6 +14,7 @@ ALLOWED_HOSTS = getenv('DJANGO_ALLOWED_HOSTS').split(',')
 
 
 INSTALLED_APPS = [
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -26,6 +28,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'apps.users',
+    'apps.schedule',
 
 ]
 
@@ -138,8 +141,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-TOKEN_EXPIRED_AFTER_SECONDS = int(getenv('TOKEN_EXPIRED_AFTER_SECONDS', 1000))
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Bishkek'
@@ -150,6 +151,7 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = '../frontend/schedule-app/public'
 MEDIA_URL = ''
 
