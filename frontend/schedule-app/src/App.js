@@ -19,7 +19,6 @@ function App() {
                     <Route path="/" element={<PrivateRoute><HomePage/></PrivateRoute>} />
                     <Route path="/login" element={<LoginPage/>}/>
                     <Route path="/schedule" element={<PrivateRoute><Schedule/></PrivateRoute>} />
-                    //<Route path="/schedule" element={<PrivateRoute><Schedule/></PrivateRoute>} />
                     <Route path="*" element={<div>Not found</div>} />
                     <Route path="/registration" element={<Register />} />
                 </Routes>

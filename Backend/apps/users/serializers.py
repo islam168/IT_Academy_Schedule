@@ -39,28 +39,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
 
-class GroupSerializer(serializers.ModelSerializer):
-    mentor = serializers.SerializerMethodField()
-    reviewer = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Group
-        fields = ['id', 'name', 'mentor', 'reviewer']
-
-    def get_mentor(self, obj):
-        users = obj.users.all()  # Получить всех пользователей связанных с группой
-        for user in users:
-            if 'Ментор' in user.role.values_list('name', flat=True) and user.group == obj:
-                return UserSerializer(user).data
-        return None
-
-    def get_reviewer(self, obj):
-        users = obj.users.all()  # Получить всех пользователей связанных с группой
-        for user in users:
-            if 'Ревьювер' in user.role.values_list('name', flat=True) and user.group == obj:
-                return UserSerializer(user).data
-        return None
-
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):

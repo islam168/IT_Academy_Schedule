@@ -15,9 +15,9 @@
 }
 
 .text {
-margin-top: 50px;
-font-family: "Arial", sans-serif;
-text-align: center;
+  margin-top: 50px;
+  font-family: "Arial", sans-serif;
+  text-align: center;
 }
 
 .background {
@@ -25,19 +25,48 @@ text-align: center;
   background-repeat: no-repeat;
   background-size: 20%;
   background-position: center;
-  height: 100%; /* Растянуть на весь экран */
+  height: 100%;
   width: 100%;
 }
 
-
 .transparent-bg {
   margin-top: 100px;
-  background-color: rgba(0, 0, 0, 0.55); /* Прозрачный фон на 60% */
+  background-color: rgba(0, 0, 0, 0.55);
   padding: 45px;
   border-radius: 20px;
 }
 
-.registration-btn{
+.registration-btn {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  padding: 0;
+}
+
+.registration-btn {
+  margin-bottom: 20px;
+  margin-right: -10px;
+
+}
+
+.title-wrapper h2 {
+  margin-bottom: 20px;
 }

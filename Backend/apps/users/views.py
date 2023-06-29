@@ -1,13 +1,10 @@
-from django.contrib.auth import authenticate
-from rest_framework.authtoken.models import Token
-from rest_framework.generics import GenericAPIView, CreateAPIView, ListAPIView
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.generics import CreateAPIView, ListAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.status import HTTP_404_NOT_FOUND, HTTP_200_OK
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
-
-from apps.users.serializers import UserCreateSerializer, RoleSerializer, GroupSerializer, MyTokenObtainPairSerializer
+from apps.schedule.serializers import GroupSerializer
+from apps.users.serializers import UserCreateSerializer, RoleSerializer, MyTokenObtainPairSerializer
 from apps.users.models import User, Group, Role
 from rest_framework import response, status
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -37,8 +34,25 @@ class UserCreateAPIView(CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         email = request.data.get('email')
+        roles = request.data.get('role')
+        group = request.data.get('group')
+
         if User.objects.filter(email=email).exists():
             return Response('пользователь с такой почтой уже существует', status=status.HTTP_400_BAD_REQUEST)
+
+        else:
+            role_list = []
+            for role in roles:
+                user_role = Role.objects.get(id=role)
+                role_list.append(str(user_role))
+            if 'Ментор' in role_list:
+                if User.objects.filter(group_id=group, role__name='Ментор').exists():
+                    return Response('У этой группы уже есть ментор', status=status.HTTP_400_BAD_REQUEST)
+            if 'Ревьювер' in role_list:
+                if User.objects.filter(group_id=group, role__name='Ревьювер').exists():
+                    return Response('У этой группы уже есть ревьювер', status=status.HTTP_400_BAD_REQUEST)
+            if 'Студент' in role_list and len(role_list) > 1:
+                return Response('Студент', status=status.HTTP_400_BAD_REQUEST)
 
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
@@ -55,18 +69,3 @@ class GroupListAPIView(ListAPIView):
 class RoleListAPIView(ListAPIView):
     queryset = Role.objects.all()
     serializer_class = RoleSerializer
-
-
-class GroupAPIView(ListAPIView):
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request, *args, **kwargs):
-        user = request.user
-        user_group = Group.objects.filter(users=user).first()
-        other_groups = Group.objects.exclude(users=user)
-        user_group_serializer = GroupSerializer(user_group)
-        other_group_serializer = GroupSerializer(other_groups, many=True)
-        return Response({
-            "user_group": user_group_serializer.data,
-            "other_groups": other_group_serializer.data
-        })
