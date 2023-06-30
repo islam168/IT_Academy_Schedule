@@ -12,12 +12,13 @@ class ScheduleAPIView(ListAPIView):
 
     def get(self, request, *args, **kwargs):
         user = request.user
-        user_group = Group.objects.filter(users=user).first()
-        other_groups = Group.objects.exclude(users=user)
+        user_group = Group.objects.filter(users=user).first()  # Получение группы пользователя
+        other_groups = Group.objects.exclude(users=user)  # Получние остальных групп
         user_group_serializer = GroupSerializer(user_group)
         other_group_serializer = GroupSerializer(other_groups, many=True)
         cancels = CancelingGroupsClass.objects.all()
-        canceling_groups_class_serializer = CancelingGroupsClassSerializer(cancels, many=True)
+        canceling_groups_class_serializer = CancelingGroupsClassSerializer\
+            (cancels, many=True)  # Дни когда занятия отменены у всех групп
 
         return Response({
             "user_group": user_group_serializer.data,

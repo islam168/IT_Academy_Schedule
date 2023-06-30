@@ -13,5 +13,5 @@ def week_days(obj, week_days):
     if any(day.name == 'Суббота' for day in week_days):
         days.append(6)
     if any(day.name == 'Воскресенье' for day in week_days):
-        days.append(0)
+        days.append(0) # 0 потому-что в react-calendar воскресенье = 0
     return days
