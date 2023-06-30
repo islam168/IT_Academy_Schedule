@@ -1,26 +1,26 @@
 # IT_Academy_Schedule
 
-## Как поднять проект локально ?
+## Как поднять проект?
 ### Последовательность действий
 ```.bash
     $ git clone
     Backend
     $ cd Backend/
-    $ python -m venv venv
-    $ Запуск виртуальной среды
+    $ Win: python -m venv venv. Linux: python3 -m venv venv
+    $ Win: .\venv\Scripts\activate. Linux: source venv/bin/activate
     $ Установление переменных окружения (envs)
-    $ pip install -r requirements.txt
-    $ python manage.py makemigrations users
-    $ python manage.py makemigrations schedule
-    $ python manage.py collectstatic
-    $ python manage.py migrate
-    $ python manage.py runserver
+    $ Запуск необходимых команд через файл: 
+    - .\run_commands.bat для Win. 
+    - chmod +x run_commands.sh, затем ./run_commands.sh для Linux. 
+    $ Запуск Backend. Win: python manage.py runserver. Linux: python3 manage.py runserver
     Frontend
     $ cd frontend/schedule-app
     $ npm install
     $ npm start
 ```
-##Роли
+## Роли
 - Ментор
-- Ревьювер
+- Ревьюер
 - Студент
+
+

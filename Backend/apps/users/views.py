@@ -48,9 +48,9 @@ class UserCreateAPIView(CreateAPIView):
             if 'Ментор' in role_list:
                 if User.objects.filter(group_id=group, role__name='Ментор').exists():
                     return Response('У этой группы уже есть ментор', status=status.HTTP_400_BAD_REQUEST)
-            if 'Ревьювер' in role_list:
-                if User.objects.filter(group_id=group, role__name='Ревьювер').exists():
-                    return Response('У этой группы уже есть ревьювер', status=status.HTTP_400_BAD_REQUEST)
+            if 'Ревьюер' in role_list:
+                if User.objects.filter(group_id=group, role__name='Ревьюер').exists():
+                    return Response('У этой группы уже есть ревьюер', status=status.HTTP_400_BAD_REQUEST)
             if 'Студент' in role_list and len(role_list) > 1:
                 return Response('Студент', status=status.HTTP_400_BAD_REQUEST)
 

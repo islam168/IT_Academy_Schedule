@@ -88,8 +88,8 @@ const Registration = () => {
       if (error.response.data === 'пользователь с такой почтой уже существует') {
       setErrorMessage('Пользователь с данной почтой уже существует');
     }
-      else if(error.response.data === 'У этой группы уже есть ревьювер') {
-      setErrorMessage('У этой группы уже есть ревьювер');
+      else if(error.response.data === 'У этой группы уже есть ревьюер') {
+      setErrorMessage('У этой группы уже есть ревьюер');
     }
       else if(error.response.data === 'У этой группы уже есть ментор') {
       setErrorMessage('У этой группы уже есть ментор');
