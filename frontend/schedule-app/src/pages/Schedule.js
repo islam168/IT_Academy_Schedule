@@ -153,7 +153,7 @@ const tileContent = ({ date }) => {
               Ревьювер: {selectedGroup.reviewer && selectedGroup.reviewer.name} 👨‍💻
             </h4>
             <h4 className="schedule-subtitle">
-              Время: {selectedGroup.schedule && selectedGroup.schedule.time_start.slice(0, 5)} - {selectedGroup.schedule && selectedGroup.schedule.time_end.slice(0, 5)}
+                Время: {selectedGroup.schedule?.time_start?.slice(0, 5)} - {selectedGroup.schedule?.time_end?.slice(0, 5)}
             </h4>
             <h4 className="schedule-subtitle">
               Аудитория: {selectedGroup.schedule.auditoria && selectedGroup.schedule.auditoria.name}
@@ -168,9 +168,7 @@ const tileContent = ({ date }) => {
             tileContent={tileContent}
             ref={calendarRef}
           />
-          {/*<button className="btn btn-primary mt-2" onClick={handleTodayClick}>*/}
-          {/*  Today*/}
-          {/*</button>*/}
+
         </div>
       </div>
     </div>
