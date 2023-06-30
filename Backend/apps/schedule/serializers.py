@@ -1,7 +1,8 @@
 from rest_framework import serializers
-from apps.schedule.models import Schedule, CancelingGroupsClass, CancelingGroupClass, Auditoria
+from apps.schedule.models import Schedule, CancelingGroupsClass, CancelingGroupClass, Auditoria, WeekDays
 from apps.users.models import Group
 from apps.users.serializers import UserSerializer
+from apps.schedule.services import week_days
 
 
 class AuditoriaSerializer(serializers.ModelSerializer):
@@ -11,10 +12,21 @@ class AuditoriaSerializer(serializers.ModelSerializer):
 
 
 class ScheduleSerializer(serializers.ModelSerializer):
+    mentor_days = serializers.SerializerMethodField()
+    reviewer_days = serializers.SerializerMethodField()
     auditoria = AuditoriaSerializer(many=False, read_only=True)
     class Meta:
         model = Schedule
-        fields = ['mentor_days', 'reviewer_days', 'auditoria', 'time_start', 'time_end', 'course_start_date', 'course_end_date']
+        fields = ['mentor_days', 'reviewer_days', 'auditoria', 'time_start',
+                  'time_end', 'course_start_date', 'course_end_date']
+
+    def get_mentor_days(self, obj):
+        mentor_days = obj.mentor_days.all()
+        return week_days(obj, mentor_days)
+
+    def get_reviewer_days(self, obj):
+        reviewer_days = obj.reviewer_days.all()
+        return week_days(obj, reviewer_days)
 
 
 class CancelingGroupsClassSerializer(serializers.ModelSerializer):
@@ -51,7 +63,7 @@ class GroupSerializer(serializers.ModelSerializer):
     def get_reviewer(self, obj):
         users = obj.users.all()  # Получить всех пользователей связанных с группой
         for user in users:
-            if 'Ревьювер' in user.role.values_list('name', flat=True) and user.group == obj:
+            if 'Ревьюер' in user.role.values_list('name', flat=True) and user.group == obj:
                 return UserSerializer(user).data
         return None
 

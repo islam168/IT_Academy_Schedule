@@ -1,7 +1,7 @@
 envs/env_local.ps1
 envs/.env_local
-apps/users/migration
-apps/schedule/migration
+apps/users/migrations
+apps/schedule/migrations
 
 .idea/
 # Created by https://www.gitignore.io/api/macos,linux,django,python,pycharm

@@ -156,7 +156,7 @@ const tileContent = ({ date }) => {
                 Время: {selectedGroup.schedule?.time_start?.slice(0, 5)} - {selectedGroup.schedule?.time_end?.slice(0, 5)}
             </h4>
             <h4 className="schedule-subtitle">
-              Аудитория: {selectedGroup.schedule.auditoria && selectedGroup.schedule.auditoria.name}
+              Аудитория: {selectedGroup.schedule?.auditoria && selectedGroup.schedule?.auditoria.name}
             </h4>
           </div>
         )}

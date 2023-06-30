@@ -52,10 +52,10 @@ class Auditoria(models.Model):
 
 
 class Schedule(models.Model):
-    mentor_days = models.ManyToManyField(verbose_name='День недели',
+    mentor_days = models.ManyToManyField(verbose_name='Дни ментора',
                                          to='WeekDays',
                                          related_name='mentor_days')
-    reviewer_days = models.ManyToManyField(verbose_name='День недели',
+    reviewer_days = models.ManyToManyField(verbose_name='Дни ревьюера',
                                            to='WeekDays',
                                            related_name='reviewer_days')
     time_start = models.TimeField(verbose_name='Время начала занятия', auto_now=False, auto_now_add=False)
